@@ -6,6 +6,7 @@
 	<script src='js/three.js'></script>
 	<script src='js/OBJLoader.js'></script>
 	<script src='js/MTLLoader.js'></script>
+	<script src='./jsm/loaders/DDSLoader.js'></script>
 	<!-- include jsartookit -->
 	<script src="jsartoolkit5/artoolkit.min.js"></script>
 	<script src="jsartoolkit5/artoolkit.api.js"></script>
@@ -45,6 +46,10 @@ function initialize()
 
 	camera = new THREE.Camera();
 	scene.add(camera);
+
+	var pointLight = new THREE.PointLight( 0xffffff, 0.8 );
+	camera.add( pointLight );
+	scene.add( camera );
 
 	renderer = new THREE.WebGLRenderer({
 		antialias : true,
@@ -140,16 +145,16 @@ function initialize()
 			//markerRoot.add( mesh );
 			new THREE.MTLLoader()
 				.setPath( 'models/' )
-				.load( 'rat.mtl', function ( materials ) {
+				.load( 'sitting_girl.mtl', function ( materials ) {
 					materials.preload();
 					new THREE.OBJLoader()
 						.setMaterials( materials )
 						.setPath( 'models/' )
-						.load( 'rat.obj', function ( group ) {
+						.load( 'sitting_girl.obj', function ( group ) {
 							mesh = group.children[0];
 							mesh.material.side = THREE.DoubleSide;
-							mesh.position.y = 0.25;
-					  	mesh.scale.set(1/70,1/70,1/70);
+							mesh.position.y = 0.75;
+					  	mesh.scale.set(1,1,1);
 							markerRoot.add(mesh);
 						}, onProgress, onError );
 				});
@@ -178,11 +183,81 @@ function initialize()
 							.setMaterials( materials )
 							.setPath( 'models/obj/male02/' )
 							.load( 'male02.obj', function ( group ) {
-								mesh = group.children[0];
-								mesh.material.side = THREE.DoubleSide;
-								mesh.position.y = 0.05;
-						  	mesh.scale.set(1/160,1/160,1/160);
-								markerRoot.add(mesh);
+								mesh0 = group.children[0];
+								mesh1 = group.children[1];
+								mesh2 = group.children[2];
+								mesh3 = group.children[3];
+								mesh4 = group.children[4];
+								mesh5 = group.children[5];
+								mesh6 = group.children[6];
+								mesh7 = group.children[7];
+								mesh8 = group.children[8];
+								mesh9 = group.children[9];
+								mesh10 = group.children[10];
+								mesh11 = group.children[11];
+								mesh12 = group.children[12];
+								mesh13 = group.children[13];
+
+								mesh0.material.side = THREE.DoubleSide;
+								mesh1.material.side = THREE.DoubleSide;
+								mesh2.material.side = THREE.DoubleSide;
+								mesh3.material.side = THREE.DoubleSide;
+								mesh4.material.side = THREE.DoubleSide;
+								mesh5.material.side = THREE.DoubleSide;
+								mesh6.material.side = THREE.DoubleSide;
+								mesh7.material.side = THREE.DoubleSide;
+								mesh8.material.side = THREE.DoubleSide;
+								mesh9.material.side = THREE.DoubleSide;
+								mesh10.material.side = THREE.DoubleSide;
+								mesh11.material.side = THREE.DoubleSide;
+								mesh12.material.side = THREE.DoubleSide;
+								mesh13.material.side = THREE.DoubleSide;
+
+								mesh0.position.y = 0.05;
+								mesh1.position.y = 0.05;
+								mesh2.position.y = 0.05;
+								mesh3.position.y = 0.05;
+								mesh4.position.y = 0.05;
+								mesh5.position.y = 0.05;
+								mesh6.position.y = 0.05;
+								mesh7.position.y = 0.05;
+								mesh8.position.y = 0.05;
+								mesh9.position.y = 0.05;
+								mesh10.position.y = 0.05;
+								mesh11.position.y = 0.05;
+								mesh12.position.y = 0.05;
+								mesh13.position.y = 0.05;
+
+						  	mesh0.scale.set(1/200,1/200,1/200);
+								mesh1.scale.set(1/200,1/200,1/200);
+								mesh2.scale.set(1/200,1/200,1/200);
+								mesh3.scale.set(1/200,1/200,1/200);
+								mesh4.scale.set(1/200,1/200,1/200);
+								mesh5.scale.set(1/200,1/200,1/200);
+								mesh6.scale.set(1/200,1/200,1/200);
+								mesh7.scale.set(1/200,1/200,1/200);
+								mesh8.scale.set(1/200,1/200,1/200);
+								mesh9.scale.set(1/200,1/200,1/200);
+								mesh10.scale.set(1/200,1/200,1/200);
+								mesh11.scale.set(1/200,1/200,1/200);
+								mesh12.scale.set(1/200,1/200,1/200);
+								mesh13.scale.set(1/200,1/200,1/200);
+
+								markerRoot.add(mesh0);
+								markerRoot.add(mesh1);
+								markerRoot.add(mesh2);
+								markerRoot.add(mesh3);
+								markerRoot.add(mesh4);
+								markerRoot.add(mesh5);
+								markerRoot.add(mesh6);
+								markerRoot.add(mesh7);
+								markerRoot.add(mesh8);
+								markerRoot.add(mesh9);
+								markerRoot.add(mesh10);
+								markerRoot.add(mesh11);
+								markerRoot.add(mesh12);
+								markerRoot.add(mesh13);
+
 							}, onProgress, onError );
 					});
 				}else if(i==4){
@@ -190,9 +265,9 @@ function initialize()
 					let geometry = new THREE.PlaneBufferGeometry(1,1, 4,4);
 					let loader = new THREE.TextureLoader();
 					// let texture = loader.load( 'images/earth.jpg', render );
-					let material = new THREE.MeshBasicMaterial( { color: 0x0000ff, opacity: 0.5 } );
+					let materials = new THREE.MeshBasicMaterial( { color: 0x0000ff, opacity: 0.5 } );
 
-					mesh = new THREE.Mesh( geometry, material );
+					mesh = new THREE.Mesh( geometry, materials );
 					mesh.rotation.x = -Math.PI/2;
 					markerRoot.add( mesh );
 
@@ -210,11 +285,21 @@ function initialize()
 								.setMaterials( materials )
 								.setPath( 'models/' )
 								.load( 'student.obj', function ( group ) {
-									mesh = group.children[0];
-									mesh.material.side = THREE.DoubleSide;
-									mesh.position.y = 0.25;
-									mesh.scale.set(0.75,0.75,0.75);
-									markerRoot.add(mesh);
+									mesh0 = group.children[0];
+									mesh1 = group.children[1];
+
+									mesh0.material.side = THREE.DoubleSide;
+									mesh1.material.side = THREE.DoubleSide;
+
+									mesh0.position.y = 0.25;
+									mesh1.position.y = 0.25;
+
+									mesh0.scale.set(1/7,1/7,1/7);
+									mesh1.scale.set(1/7,1/7,1/7);
+
+									markerRoot.add(mesh0);
+									markerRoot.add(mesh1);
+
 								}, onProgress, onError );
 						});
 					}else if(i==3){
@@ -266,18 +351,45 @@ function initialize()
 							//mesh.position.y = 1.25/2;
 							//markerRoot.add( mesh );
 							new THREE.MTLLoader()
-								.setPath( 'models/' )
-								.load( 'rat.mtl', function ( materials ) {
+								.setPath( 'models/obj/Samsung_Laptop/' )
+								.load( 'Laptop.mtl', function ( materials ) {
 									materials.preload();
 									new THREE.OBJLoader()
 										.setMaterials( materials )
-										.setPath( 'models/' )
-										.load( 'rat.obj', function ( group ) {
-											mesh = group.children[0];
-											mesh.material.side = THREE.DoubleSide;
-											mesh.position.y = 0.25;
-											mesh.scale.set(0.01,0.01,0.01);
-											markerRoot.add(mesh);
+										.setPath( 'models/obj/Samsung_Laptop/' )
+										.load( 'Laptop.obj', function ( group ) {
+											mesh0 = group.children[0];
+											mesh1 = group.children[1];
+											mesh2 = group.children[2];
+											mesh3 = group.children[3];
+											mesh4 = group.children[4];
+											mesh5 = group.children[5];
+											mesh6 = group.children[6];
+											mesh7 = group.children[7];
+											mesh0.material.side = THREE.DoubleSide;
+											mesh1.material.side = THREE.DoubleSide;
+											mesh2.material.side = THREE.DoubleSide;
+											mesh3.material.side = THREE.DoubleSide;
+											mesh4.material.side = THREE.DoubleSide;
+
+											mesh0.position.y = 0.25;
+											mesh1.position.y = 0.25;
+											mesh2.position.y = 0.25;
+											mesh3.position.y = 0.25;
+											mesh4.position.y = 0.25;
+
+											mesh0.scale.set(1/6,1/6,1/6);
+											mesh1.scale.set(1/6,1/6,1/6);
+											mesh2.scale.set(1/6,1/6,1/6);
+											mesh3.scale.set(1/6,1/6,1/6);
+											mesh4.scale.set(1/6,1/6,1/6);
+
+											markerRoot.add(mesh0);
+											markerRoot.add(mesh1);
+											markerRoot.add(mesh2);
+											//markerRoot.add(mesh3);
+											//markerRoot.add(mesh4);
+
 										}, onProgress, onError );
 								});
 							}else if(i==1){
